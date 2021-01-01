@@ -12,5 +12,5 @@ pytz==2020.5
 six==1.15.0
 Werkzeug==1.0.1
 wincertstore==0.2
-winkerberos==0.7.0
+
 wrapt==1.12.1
