@@ -3,7 +3,7 @@ from pymongo import MongoClient
 class Model():
 	
 	def __init__(self) :
-		self.client = MongoClient("mongodb+srv://roshan:mrk0099mrk@cluster0.al8qd.mongodb.net/checking?retryWrites=true&w=majority")
+		self.client = MongoClient("")
 		self.db = self.client["checking"]
 		self.collection = self.db["check"]
 	def finding(self,name = "Psycho") :
