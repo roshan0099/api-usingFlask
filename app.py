@@ -1,13 +1,10 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template,request
 import db
 from bson import json_util
 import json
 import bson
-from flask_restful import Api,Resource,reqparse,abort
 
 app = Flask(__name__)
-
-api = Api(app)
 
 # schema = reqparse.RequestParser(bundle_errors=True)
 # schema.add_argument("name", type=str, required=True, help = "type your name and its kinda mandatory")
@@ -22,32 +19,27 @@ def capitalize(name):
 	fix = [i.capitalize() for i in name.split()]
 	return " ".join(fix)
 
-class Hey(Resource):
-	def get(self,name):
+@app.route("/")
+
+def home():
+	return render_template("index.html")	
+
+@app.route("/<string:name>", methods = ["GET","POST"])
+
+def get(name):
+	if request.method == "GET" :
 		mongo =db.Model()
 		actual_name = capitalize(name)
 		details = mongo.finding(actual_name)
 		if details != [] :
-			return details
+			print(details)
+			return {"details" : details}
 		else :
 			return "oops couldnt find !!!!!, tip : Try spelling it as it is "	
+	else :
+		return "<h1>oooppssss....</h1>"		
 
-	# def put(self,name):
-	# 	arrgs = schema.parse_args()
-	# 	return{'we got': arrgs}
-
-
-	# def post(self,name):
-	# 	arrgs = schema.parse_args()
-	# 	collection.insert_one(arrgs)
-	# 	lol.append(arrgs)
-	# 	# collection.insert_one(arrgs)
-	# 	return {'your msg': "cool" }
-
-api.add_resource(Hey,"/<string:name>")
-
-# if __name__ == '__main__':
-#  	app.run(debug=True) 
-
+if __name__ == '__main__':
+	app.run(debug=True)
 
 	
