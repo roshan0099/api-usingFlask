@@ -11,16 +11,7 @@ class Model():
 		data = []
 		info = self.collection.find({"title":name},{"_id" : False})
 		return list(info)
-
 	def inserting(self,title,plot,rate) :
 		pass				
 	
 	
-# jam = Model()
-
-# print(jam.finding())
-# say = {"movie": "james bond", "code" : "007"})
-
-# print(say)
-
-# print(os.environ.get('KEY'))

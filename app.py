@@ -3,17 +3,10 @@ import db
 from bson import json_util
 import json
 import bson
+from flask_cors import CORS
 
 app = Flask(__name__)
-
-# schema = reqparse.RequestParser(bundle_errors=True)
-# schema.add_argument("name", type=str, required=True, help = "type your name and its kinda mandatory")
-# schema.add_argument("job", type=str, required=True,help = "type your Job and its kinda mandatory")
-
-
-# schemaf = reqparse.RequestParser(bundle_errors=True)
-# schemaf.add_argument("title", type=str, required=True, help = "type your name and its kinda mandatory")
-
+CORS(app)
 
 def capitalize(name):
 	fix = [i.capitalize() for i in name.split()]
